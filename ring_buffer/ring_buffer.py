@@ -98,8 +98,13 @@ class RingBuffer:
     self.full += 1 if self.full < self.capacity else self.capacity
   
   def get(self): 
-    #the get method needs to return the data
-    return self.storage
+    # there is always a state of full and what the capacity is and the get method needs to return the correct data
+    if self.full < self.capacity:
+      #atorage will match the fullness
+      return self.storage[:self.full]
+    else:
+      #or just return itself
+      return self.storage
 
 
 # HOW TO GET RID OF THE NONE!?!?!??!
