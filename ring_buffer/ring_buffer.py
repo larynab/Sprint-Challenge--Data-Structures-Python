@@ -83,14 +83,31 @@ class RingBuffer:
     self.current = 0
     self.storage = [None]*capacity
     #wanted to add a full state
-    # self.full = 0
-    #but then i noticed the test uses length on self storage 
+    self.full = 0
+    #and then i noticed the test uses length on self storage 
   def append(self, item):
     #storage becomes the current item and eventually the capacity
+    #seeing the above examples I used it the same way 
+    #  """ Append an element overwriting the oldest one. """
+    # self.data[self.cur] = x
+    # self.cur = (self.cur+1) % self.max
     self.storage[self.current] = item
     self.current += 1
-    return self.storage
+    self.current %= self.capacity
+    #depending on the state of being full or not, it will go with full or capacity
+    self.full += 1 if self.full < self.capacity else self.capacity
   
   def get(self): 
-    pass
-    
+    #the get method needs to return the data
+    return self.storage
+
+
+# HOW TO GET RID OF THE NONE!?!?!??!
+#   First list contains 1 additional elements.
+# First extra element 4:
+# None
+
+# - ['a', 'b', 'c', 'd', None]
+# ?                    ------
+
+# + ['a', 'b', 'c', 'd']  
