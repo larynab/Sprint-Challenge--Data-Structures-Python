@@ -1,4 +1,4 @@
-#example 1-----------------------------------------------------------
+#example 1-----------------------------------------------------------http://code.activestate.com/recipes/68429-ring-buffer/
 # class RingBuffer:
 # 	def __init__(self,size_max):
 # 		self.max = size_max
@@ -33,7 +33,7 @@
 # x.append(7); x.append(8); x.append(9); x.append(10)
 # print x.data,x.get()
 
-# example 2-----------------------------------------------------------------
+# example 2----------------------------------------------------------------- https://www.oreilly.com/library/view/python-cookbook/0596001673/ch05s19.html
 # class RingBuffer:
 #     """ class that implements a not-yet-full buffer """
 #     def _ _init_ _(self,size_max):
@@ -77,17 +77,20 @@
 
 
 # #actual problem----------------------------------------------------------------
-# class RingBuffer:
-#   def __init__(self, capacity):
-#     self.capacity = capacity
-#     self.current = 0
-#     self.storage = [None]*capacity
-
-#   def append(self, item):
-#     pass
-
-#   def get(self):
-#     pass
-
-
+class RingBuffer:
+  def __init__(self, capacity):
+    self.capacity = capacity
+    self.current = 0
+    self.storage = [None]*capacity
+    #wanted to add a full state
+    # self.full = 0
+    #but then i noticed the test uses length on self storage 
+  def append(self, item):
+    #storage becomes the current item and eventually the capacity
+    self.storage[self.current] = item
+    self.current += 1
+    return self.storage
+  
+  def get(self): 
+    pass
     
